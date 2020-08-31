@@ -121,3 +121,21 @@ function getCards(listId, callback) {
 // Task 1 board -> lists -> cards for list qwsa221
 // Task 2 board -> lists -> cards for list qwsa221 and cards for list jwkh245 simultaneously
 // Task 3 board -> lists -> cards for all lists simultaneously
+
+// Task 1
+getBoard((boardData) =>
+  getLists(boardData.id, function (data) {
+    getCards(
+      data
+        .filter((entry) => {
+          if (entry["id"] === "qwsa221") {
+            return entry.id;
+          }
+        })
+        .map((entry) => entry.id)
+        .join(""), (cardList) => {
+          console.log(cardList)
+        }
+    );
+  })
+);
