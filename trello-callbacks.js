@@ -122,7 +122,7 @@ function getCards(listId, callback) {
 // Task 2 board -> lists -> cards for list qwsa221 and cards for list jwkh245 simultaneously
 // Task 3 board -> lists -> cards for all lists simultaneously
 
-// Task 1
+// // Task 1
 getBoard((boardData) =>
   getLists(boardData.id, function (data) {
     getCards(
@@ -141,7 +141,7 @@ getBoard((boardData) =>
   })
 );
 
-// Task 2
+// // Task 2
 getBoard((boardData) =>
   getLists(boardData.id, function (data) {
     console.log(
@@ -151,6 +151,21 @@ getBoard((boardData) =>
             return entry.id;
           }
         })
+        .map((entry) => entry.id)
+        .forEach((cardId) =>
+          getCards(cardId, (cardList) => {
+            console.log(cardList);
+          })
+        )
+    );
+  })
+);
+
+// Task 3
+getBoard((boardData) =>
+  getLists(boardData.id, function (data) {
+    console.log(
+      data
         .map((entry) => entry.id)
         .forEach((cardId) =>
           getCards(cardId, (cardList) => {
