@@ -154,3 +154,14 @@ function filterOfTask2(result) {
     })
     .map((el) => el.id);
 }
+
+
+// Task 3
+getBoard()
+  .then((res) => getLists(res.id))
+  .then(filterOfTask3)
+  .then((res) => res.forEach((el) => getCards(el).then(console.log)));
+
+function filterOfTask3(result) {
+  return result.map((e) => e.id);
+}
