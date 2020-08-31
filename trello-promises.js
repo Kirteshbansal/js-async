@@ -137,3 +137,20 @@ getBoard()
 function filterOfTask1(result){
   return result.filter( e => e.id === "qwsa221").map(e => e.id).join("")
 }
+
+// Task 2
+
+getBoard()
+  .then((res) => getLists(res.id))
+  .then((val) => filterOfTask2(val))
+  .then((res) => res.forEach((id) => getCards(id).then(console.log)));
+
+function filterOfTask2(result) {
+  return result
+    .filter((el) => {
+      if (el.id === "qwsa221" || el.id === "jwkh245") {
+        return el.id;
+      }
+    })
+    .map((el) => el.id);
+}
