@@ -55,11 +55,15 @@ async function userDataSerial(){
  * Task 2: Send a login request for user1 -> get user profile data and get user posts data simultaneously
  */
 
-function userDataParallel() {
-  console.time('userData-parallel');
-  // Write code here
-  console.timeEnd('userData-parallel');
-}
+async function userDataParallel() {
+    console.time('userData-parallel');
+    let userId = 'user1';
+    let userLogin = await sendUserLoginRequest(userId)
+    console.log(userLogin);
+    let userProfileAndPostData = await Promise.all([getUserProfile(userId),getUserPosts(userId)])
+    console.log(userProfileAndPostData);
+    console.timeEnd('userData-parallel');
+  }
 
 userDataSerial();
 userDataParallel();
