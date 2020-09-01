@@ -64,7 +64,7 @@ fetchRandomString().then(console.log);
 // Task 2
 (function sumOfTwoRandomNumbers() {
   let sum = 0;
-  return  fetchRandomNumbers()
+  return fetchRandomNumbers()
     .then((el) => {
       sum += el;
       console.log("sum is : " + sum);
@@ -74,6 +74,10 @@ fetchRandomString().then(console.log);
       sum += el;
       console.log("sum is : " + sum);
       return sum;
-    })
-})().then(res => console.log("sum of both random numbers is : " + res)); 
+    });
+})().then((res) => console.log("sum of both random numbers is : " + res));
 
+// Task 3
+(function concatBoth() {
+  return Promise.all([fetchRandomNumbers(), fetchRandomString()]);
+})().then((arr) => console.log("concatenated String: " + arr.join("")));
