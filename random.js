@@ -153,13 +153,30 @@ async function sumOfTwoRandomNumbers() {
 
 sumOfTwoRandomNumbers();
 
-  // Async-await version of Task 3
+// Async-await version of Task 3
 
-  async function concatBoth() {
-    let arr = await Promise.all([fetchRandomNumbers(), fetchRandomString()]);
-    result = arr.join("");
-    console.log(result)
+async function concatBoth() {
+  let arr = await Promise.all([fetchRandomNumbers(), fetchRandomString()]);
+  result = arr.join("");
+  console.log(result);
+}
+
+console.log(concatBoth());
+
+// Async-await version of Task 4
+async function fetchRandomNumberTenTimes2() {
+  let i = 10;
+  let arr = [];
+  while (i > 0) {
+    arr.push(fetchRandomNumbers());
+    i--;
   }
-  
-  console.log(concatBoth())
-  
+  let totalSum = await Promise.all(arr);
+  totalSum = await totalSum.reduce((acc, crr) => {
+    acc += crr;
+    return acc;
+  }, 0);
+  console.log(totalSum);
+}
+
+fetchRandomNumberTenTimes2();
