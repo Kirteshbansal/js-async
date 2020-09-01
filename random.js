@@ -102,7 +102,6 @@ fetchRandomNumberTenTimes()
   )
   .then((res) => console.log("Sum of 10 random numbers is: " + res));
 
-
 // Async-await solution
 
 // Async-await version of fetchRandomNumbers()
@@ -119,3 +118,26 @@ async function fetchRandomNumbers() {
 }
 
 fetchRandomNumbers();
+
+// Async-await version of fetchRandomString()
+async function fetchRandomString() {
+  let result = await new Promise((resolve, reject) => {
+    console.log("Fetching string...");
+    setTimeout(() => {
+      let result = "";
+      let characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      let charactersLength = characters.length;
+      for (let i = 0; i < 5; i++) {
+        result += characters.charAt(
+          Math.floor(Math.random() * charactersLength)
+        );
+      }
+      console.log("Received random string:", result);
+      resolve(result);
+    }, (Math.floor(Math.random() * 5) + 1) * 1000);
+  });
+  console.log(result);
+}
+
+fetchRandomString();
