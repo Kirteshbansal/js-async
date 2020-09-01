@@ -152,3 +152,14 @@ async function sumOfTwoRandomNumbers() {
 }
 
 sumOfTwoRandomNumbers();
+
+  // Async-await version of Task 3
+
+  async function concatBoth() {
+    let arr = await Promise.all([fetchRandomNumbers(), fetchRandomString()]);
+    result = arr.join("");
+    console.log(result)
+  }
+  
+  console.log(concatBoth())
+  
