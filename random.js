@@ -114,10 +114,10 @@ async function fetchRandomNumbers() {
       resolve(randomNum);
     }, (Math.floor(Math.random() * 5) + 1) * 1000);
   });
-  console.log(result);
+  return result;
 }
 
-fetchRandomNumbers();
+console.log(fetchRandomNumbers());
 
 // Async-await version of fetchRandomString()
 async function fetchRandomString() {
@@ -137,7 +137,18 @@ async function fetchRandomString() {
       resolve(result);
     }, (Math.floor(Math.random() * 5) + 1) * 1000);
   });
-  console.log(result);
+  return result;
 }
 
-fetchRandomString();
+console.log(fetchRandomString());
+
+// Async-await version of Task 2
+async function sumOfTwoRandomNumbers() {
+  let sum = 0;
+  sum += await fetchRandomNumbers();
+  console.log("sum is : " + sum);
+  sum += await fetchRandomNumbers();
+  console.log("sum is : " + sum);
+}
+
+sumOfTwoRandomNumbers();
