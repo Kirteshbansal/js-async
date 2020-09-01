@@ -39,9 +39,15 @@ function getUserPosts(userId){
  * Task 1: Send a login request for user1 -> get user profile data -> get user posts data
  */
 
-function userDataSerial(){
+async function userDataSerial(){
   console.time('userData-serial');
-  // Write code here
+  let userId = 'user1';
+    let userLogin = await sendUserLoginRequest(userId)
+    console.log(userLogin);
+    let userProfile = await getUserProfile(userId)
+    console.log(userProfile);
+    let userPostData = await getUserPosts(userId)
+    console.log(userPostData);
   console.timeEnd('userData-serial');
 }
 
