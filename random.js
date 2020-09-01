@@ -75,9 +75,29 @@ fetchRandomString().then(console.log);
       console.log("sum is : " + sum);
       return sum;
     });
-})().then((res) => console.log("sum of both random numbers is : " + res));
+})().then((res) => console.log("sum of two random numbers is : " + res));
 
 // Task 3
 (function concatBoth() {
   return Promise.all([fetchRandomNumbers(), fetchRandomString()]);
 })().then((arr) => console.log("concatenated String: " + arr.join("")));
+
+// Task 4
+function fetchRandomNumberTenTimes() {
+  let i = 10;
+  let arr = [];
+  while (i > 0) {
+    arr.push(fetchRandomNumbers());
+    i--;
+  }
+  return Promise.all(arr);
+}
+
+fetchRandomNumberTenTimes()
+  .then((arr) =>
+    arr.reduce((acc, crr) => {
+      acc += crr;
+      return acc;
+    }, 0)
+  )
+  .then((res) => console.log("Sum of 10 random numbers is: " + res));
