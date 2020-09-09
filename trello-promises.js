@@ -166,7 +166,10 @@ function filterOfTask2(result) {
 getBoard()
   .then((res) => getLists(res.id))
   .then(filterOfTask3)
-  .then((res) => res.forEach((el) => getCards(el).then(console.log)));
+  .then((res) => Promise.all(res.map(getCards)))
+  .then(console.log)
+  .catch((e) => console.error(e));
+
 
 function filterOfTask3(result) {
   return result.map((e) => e.id);
