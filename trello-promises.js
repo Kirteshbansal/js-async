@@ -132,10 +132,15 @@ function getCards(listId) {
 
 getBoard()
   .then((res) => getLists(res.id))
-  .then(filterOfTask1).then(getCards).then(console.log);
+  .then(filterOfTask1)
+  .then(getCards)
+  .then(console.log);
 
-function filterOfTask1(result){
-  return result.filter( e => e.id === "qwsa221").map(e => e.id).join("")
+function filterOfTask1(result) {
+  return result
+    .filter((e) => e.id === "qwsa221")
+    .map((e) => e.id)
+    .join("");
 }
 
 // Task 2
@@ -143,7 +148,9 @@ function filterOfTask1(result){
 getBoard()
   .then((res) => getLists(res.id))
   .then((val) => filterOfTask2(val))
-  .then((res) => res.forEach((id) => getCards(id).then(console.log)));
+  .then((res) => Promise.all(res.map(getCards)))
+  .then(console.log)
+  .catch((e) => console.error(e));
 
 function filterOfTask2(result) {
   return result
@@ -154,7 +161,6 @@ function filterOfTask2(result) {
     })
     .map((el) => el.id);
 }
-
 
 // Task 3
 getBoard()
